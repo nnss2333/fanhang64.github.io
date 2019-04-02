@@ -5,7 +5,7 @@
 # Site
 title: Hexo
 subtitle:
-description:
+description: 凡事预则立,不预则废
 keywords:
 author: Fanhz
 language: zh-CN
@@ -79,5 +79,5 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: 'git@github.com:fanhang64/fanhang64.github.io.git'
+  repo: git@github.com:fanhang64/fanhang64.github.io.git
   branch: master

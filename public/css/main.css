@@ -1769,7 +1769,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff04ab;
+  background: #f5b054;
 }
 .feed-link,
 .chat {
@@ -2572,7 +2572,7 @@ hr {
   display: none;
 }
 .posts-expand .post {
-  margin-top: 120px;
+  margin-top: 40px;
 }
 .posts-expand .post:first-child {
   margin-top: 0;

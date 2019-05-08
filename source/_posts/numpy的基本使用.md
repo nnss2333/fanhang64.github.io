@@ -239,6 +239,7 @@ a[::-1]  # array([729, 512, 343, 216, 125, -1000, 27, -1000, 1, -1000])
 
 for i in a:
     print(i)  # 0 1 ...
+
 ```
 
 ##### (2) 多维数组操作
@@ -255,7 +256,7 @@ array([[ 0,  1,  2,  3],
        [20, 21, 22, 23],
        [30, 31, 32, 33],
        [40, 41, 42, 43]])
->> b[1, 3]
+>> b[1, 3]  # b[行索引, 列索引]
 13
 >> b[0:5, 1]  # 每一行的第1列
 array([ 1, 11, 21, 31, 41])
@@ -263,6 +264,16 @@ array([ 1, 11, 21, 31, 41])
 >> b[1:3, :]  # 第1-2行的所有列
 array([[10, 11, 12, 13],
        [20, 21, 22, 23]])
+
+>> c = np.arange(12)
+>> print(c)
+[ 0  1  2  3  4  5  6  7  8  9 10 11]
+>> print(c[4])  # 4
+>> c.shape = (3, 4)  # c变为2维数组
+>> print(c)
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
 ```
 
 当提供的索引数少于轴数时，缺失的索引将被视为完整切片：
@@ -301,6 +312,12 @@ array([40, 41, 42, 43])
 ```python
 >> import numpy as np
 
+>> arr = np.arange(1,10)
+>> print(arr)
+[1 2 3 4 5 6 7 8 9]
+>> arr[np.array([2, 2, -3, 7])]  # 由值2，2，-3和7组成的索引数组相应地创建了一个长度为4的数组。
+array([3, 3, 7, 8])
+
 >> arr = np.arange(6).reshape((3, 2))
 >> print(arr)
 [[0 1]
@@ -312,9 +329,18 @@ array([40, 41, 42, 43])
 [[0 1]
  [2 3]]
 
->> arr3 = arr[[0,1], [1]]  # 获取0,1行第1列的值
+# 下面这种情况，如果索引数组具有匹配的形状，并且索引数组的每个维都有一个索引数组，则结果数组具有与索引数组相同的形状，并且这些值对应于每个索引集的索引在索引数组中的位置。在此示例中，两个索引数组的第一个索引值为0，因此结果数组的第一个值为arr3[0,0]。下一个值是arr3[1,1]，最后一个是arr3[2,3]
+>> arr3 = np.arange(12).reshape(3, 4)
 >> print(arr3)
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+>> arr3[[0,1,2], [0, 1, 3]]
+[0  5 11]
 
+>> arr4 = arr3[[0,1,2], [1]]  # 获取0,1行第1列的值, 尝试将它们广播到相同的形状，即取值arr3[0,1]，arr3[1, 1], arr3[2, 1]
+>> print(arr4)
+[1, 5, 9]
 
 >> arr = np.arange(12).reshape((4, 3))
 [[ 0  1  2]
@@ -334,7 +360,75 @@ array([40, 41, 42, 43])
 
 ##### (4) 布尔索引
 
+布尔数组的形状必须与被索引数组的初始维度相同，其中包含索引数组中所有对应于布尔数组中所有真实元素的元素。
 
+**Example:**
+
+```python
+>> import numpy as np
+
+>> arr = np.arange(12).reshape(3, 4)
+>> print(arr)
+>> x = arr > 7
+>> print(x)
+[[False False False False]
+ [False False False False]
+ [ True  True  True  True]]
+>>  arr[x]  # 结果为一维数组
+array([ 8,  9, 10, 11])
+
+>> y = x[:, 1]
+>> print(y)  # 所有行的第一列元素(广播)
+[False False  True]
+
+>> arr[y]  # 即取第2行, 0,1行为False不取
+array([[ 8,  9, 10, 11]])
+```
+
+
+
+#### 广播
+
+广播(Broadcast)是 numpy 对不同shape的数组进行数值计算的方式，对数组的算术运算通常是元素级别的。
+
+如果两个数组 a 和 b 形状相同，即满足`a.shape == b.shape`，那么 a*b 的结果就是 a 与 b 数组对应位置的元素相乘。这要求维数相同，且各维度的长度相同。
+
+```python
+import numpy as np
+
+arr1 = np.array([1, 2, 3])
+arr2 = np.arange(11, 14)
+arr = arr1 + arr2
+print(arr)  # [12 14 16]
+```
+
+当执行操作的两个数组, shape不同时,会自动触发广播机制。
+
+```python
+>> import numpy as np
+
+>> arr2 = np.array([1, 2, 3])
+>> arr3 = np.arange(12).reshape((4, 3))
+
+>> arr = arr2 + arr3  # ==> 等同于 arr2为[[1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3]]相加
+>> print(arr)
+[[ 1  3  5]
+ [ 4  6  8]
+ [ 7  9 11]
+ [10 12 14]]
+```
+
+
+
+
+
+参考文档：
+
+<https://www.numpy.org/devdocs/user/quickstart.html>
+
+ <https://www.numpy.org.cn/user_guide/numpy_basics/indexing.html> 
+
+<https://www.runoob.com/numpy/numpy-broadcast.html>
 
 
 

@@ -57,7 +57,7 @@
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
+      <div class="footer-inner" style='text-align: center;'>
         {{ partial('_partials/footer.swig', {}, {cache: theme.cache.enable}) }}
         {% include '_third-party/analytics/analytics-with-widget.swig' %}
         {% block footer %}{% endblock %}
@@ -100,7 +100,9 @@
   {% set scheme_script = '_scripts/schemes/' + theme.scheme | lower + '.swig' %}
   {% include scheme_script %}
 
-  {% block script_extra %}{% endblock %}
+  {% block script_extra %}
+    <script type="text/javascript" src="/js/fuqiang.js"></script>
+  {% endblock %}
 
   {% include '_scripts/next-boot.swig' %}
   {% include '_scripts/scroll-cookie.swig' %}
@@ -122,5 +124,6 @@
   {% include '_third-party/copy-code.swig' %}
   {% include '_third-party/chatra.swig' %}
   {% include '_third-party/tidio.swig' %}
+
 </body>
 </html>

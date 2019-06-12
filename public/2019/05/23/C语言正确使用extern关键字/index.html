@@ -96,16 +96,18 @@
 
 
 
-  <meta name="description" content="凡事预则立,不预则废">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HangZo&#39;s blog">
-<meta property="og:url" content="https://fanhang64.github.io/index.html">
+  <meta name="description" content="利用关键字extern，可以在一个文件中引用另一个文件中定义的变量或者函数，下面就结合具体的实例，分类说明一下。  一、引用同一个文件中的变量1234567891011121314151617#include&amp;lt;stdio.h&amp;gt;int func();int main()&amp;#123;    func();    printf(&quot;%d&quot;,num);    return 0;&amp;#125;int">
+<meta name="keywords" content="C语言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言正确使用extern关键字">
+<meta property="og:url" content="https://fanhang64.github.io/2019/05/23/C语言正确使用extern关键字/index.html">
 <meta property="og:site_name" content="HangZo&#39;s blog">
-<meta property="og:description" content="凡事预则立,不预则废">
+<meta property="og:description" content="利用关键字extern，可以在一个文件中引用另一个文件中定义的变量或者函数，下面就结合具体的实例，分类说明一下。  一、引用同一个文件中的变量1234567891011121314151617#include&amp;lt;stdio.h&amp;gt;int func();int main()&amp;#123;    func();    printf(&quot;%d&quot;,num);    return 0;&amp;#125;int">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-12T13:47:45.236Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HangZo&#39;s blog">
-<meta name="twitter:description" content="凡事预则立,不预则废">
+<meta name="twitter:title" content="C语言正确使用extern关键字">
+<meta name="twitter:description" content="利用关键字extern，可以在一个文件中引用另一个文件中定义的变量或者函数，下面就结合具体的实例，分类说明一下。  一、引用同一个文件中的变量1234567891011121314151617#include&amp;lt;stdio.h&amp;gt;int func();int main()&amp;#123;    func();    printf(&quot;%d&quot;,num);    return 0;&amp;#125;int">
 
 
 
@@ -115,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="https://fanhang64.github.io/">
+  <link rel="canonical" href="https://fanhang64.github.io/2019/05/23/C语言正确使用extern关键字/">
 
 
 
@@ -125,7 +127,7 @@
   };
 </script>
 
-  <title>HangZo's blog</title>
+  <title>C语言正确使用extern关键字 | HangZo's blog</title>
   
 
 
@@ -173,8 +175,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -212,7 +213,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -354,194 +355,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fanhang64.github.io/2019/06/12/subtree的使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HangZo">
-      <meta itemprop="description" content="凡事预则立,不预则废">
-      <meta itemprop="image" content="/images/avatrar-main.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HangZo's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/12/subtree的使用/" class="post-title-link" itemprop="url">git subtree 的使用</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-12 21:45:49 / 修改时间：21:54:35" itemprop="dateCreated datePublished" datetime="2019-06-12T21:45:49+08:00">2019-06-12</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/git相关/" itemprop="url" rel="index"><span itemprop="name">git相关</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/06/12/subtree的使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/06/12/subtree的使用/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>git subtree的主要命令有：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git subtree add   --prefix=&lt;prefix&gt; &lt;commit&gt;</span><br><span class="line">git subtree add   --prefix=&lt;prefix&gt; &lt;repository&gt; &lt;ref&gt;</span><br><span class="line">git subtree pull  --prefix=&lt;prefix&gt; &lt;repository&gt; &lt;ref&gt;</span><br><span class="line">git subtree push  --prefix=&lt;prefix&gt; &lt;repository&gt; &lt;ref&gt;</span><br><span class="line">git subtree merge --prefix=&lt;prefix&gt; &lt;commit&gt;</span><br><span class="line">git subtree split --prefix=&lt;prefix&gt; [OPTIONS] [&lt;commit&gt;]</span><br></pre></td></tr></table></figure>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>我们先准备一个仓库叫Photo，一个仓库叫libPNG，然后我们希望把libPNG作为Photo的子仓库。<br>Photo的路径为<code>https://github.com/fanhang64/Photo.git</code>，仓库里的文件有：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Photo</span><br><span class="line">	|</span><br><span class="line">    |-- .gitignore</span><br><span class="line">    |-- Photo.c</span><br><span class="line">    |-- Photo.h</span><br><span class="line">    |-- main.c</span><br><span class="line">    \-- README.rst</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/06/12/subtree的使用/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-    <div>
-    
-  </div>
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -573,10 +389,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/23/C语言正确使用extern关键字/" class="post-title-link" itemprop="url">C语言正确使用extern关键字</a>
+          <h1 class="post-title" itemprop="name headline">C语言正确使用extern关键字
+
               
             
           </h1>
@@ -683,20 +497,30 @@
       
 
       
-        
-          <p>利用关键字extern，可以在一个文件中引用另一个文件中定义的变量或者函数，下面就结合具体的实例，分类说明一下。 </p>
+        <p>利用关键字extern，可以在一个文件中引用另一个文件中定义的变量或者函数，下面就结合具体的实例，分类说明一下。 </p>
 <h3 id="一、引用同一个文件中的变量"><a href="#一、引用同一个文件中的变量" class="headerlink" title="一、引用同一个文件中的变量"></a>一、引用同一个文件中的变量</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    func();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,num);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> num = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,num);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果按照这个顺序，变量 <code>num</code>在<code>main</code>函数的后边进行声明和初始化的话，那么在<code>main</code>函数中是不能直接引用<code>num</code>这个变量的，因为当编译器编译到这一句话的时候，找不到<code>num</code>这个变量的声明，但是在<code>func</code>函数中是可以正常使用，因为<code>func</code>对<code>num</code>的调用是发生在<code>num</code>的声明和初始化之后。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/23/C语言正确使用extern关键字/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
+<a id="more"></a>
+<p><strong>问题：</strong> 如果我不想改变<code>num</code>的声明的位置，但是想在<code>main</code>函数中直接使用<code>num</code>这个变量，怎么办呢？</p>
+<p>可以使用<code>extern</code>这个关键字。像下面这一段代码，利用<code>extern</code>关键字先声明一下<code>num</code>变量，告诉编译器<code>num</code>这个变量是存在的，但是不是在这之前声明的，你到别的地方找找吧，果然，这样就可以顺利通过编译啦。但是你要是想欺骗编译器也是不行的，比如你声明了<code>extern int num；</code>但是在后面却没有真正的给出<code>num</code>变量的声明，那么编译器去别的地方找了，但是没找到还是不行的。</p>
+<p>下面的程序就是利用<code>extern</code>关键字，使用在后边定义的变量。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    func();  <span class="comment">// 3</span></span><br><span class="line">    <span class="keyword">extern</span> <span class="keyword">int</span> num;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,num);  <span class="comment">// 3 </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> num = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,num);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="二、引用另一个文件中的变量"><a href="#二、引用另一个文件中的变量" class="headerlink" title="二、引用另一个文件中的变量"></a>二、引用另一个文件中的变量</h3><p>如果<code>extern</code>这个关键字就这点功能，那么这个关键字就显得多余了，因为上边的程序可以通过将<code>num</code>变量在<code>main</code>函数的上边声明，使得在<code>main</code>函数中也可以使用。<br><code>extern</code>这个关键字的真正的作用是引用不在同一个文件中的变量或者函数。</p>
+<p><strong>实例：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在main.c中</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">extern</span> <span class="keyword">int</span> num;  <span class="comment">// 引用b.c中的num</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,num);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在b.c文件中</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> num = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"fun in b.c"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例如，这里<code>b.c</code>中定义了一个变量num，如果<code>main.c</code>中想要引用这个变量，那么可以使用<code>extern</code>这个关键字，注意这里能成功引用的原因是，<code>num</code>这个关键字在<code>b.c</code>中是一个全局变量，也就是说只有当一个变量是一个全局变量时，<code>extern</code>变量才会起作用，向下面这样是不行的。</p>
+<p><strong>实例：</strong> </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在mian.c中</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">extern</span> <span class="keyword">int</span> num;  <span class="comment">// ok 声明时候不会报错</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,num);  <span class="comment">// error </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在b.c中</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">5</span>;  <span class="comment">// 局部变量</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"fun in b.c"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外，<code>extern</code>关键字只需要指明类型和变量名就行了，不能再重新赋值，初始化需要在原文件所在处进行，如果不进行初始化的话，全局变量会被编译器自动初始化为0。下面像这种写法是不行的，<code>extern int num=4;</code> ，<br>但是在声明之后就可以使用变量名进行修改了，像这样：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">extern</span> <span class="keyword">int</span> num;</span><br><span class="line">    num=<span class="number">1</span>;  <span class="comment">// ok </span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,num);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果不想这个变量被修改可以使用const关键字进行修饰，写法如下： </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在mian.c中</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">int</span> num;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,num);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在b.c中</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> num=<span class="number">5</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"fun in b.c"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用<code>include</code>将另一个文件全部包含进去可以引用另一个文件中的变量，但是这样做的结果就是，被包含的文件中的所有的变量和方法都可以被这个文件使用，这样就变得不安全，如果只是希望一个文件使用另一个文件中的某个变量还是使用<code>extern</code>关键字更好（注意：没有<code>include &quot;b.c&quot;</code>文件）。</p>
+<h3 id="三、引用另一个文件中的函数"><a href="#三、引用另一个文件中的函数" class="headerlink" title="三、引用另一个文件中的函数"></a>三、引用另一个文件中的函数</h3><p><code>extern</code> 关键字除了引用另一个文件中的变量外，还可以引用另一个文件中的函数，引用方法和引用变量相似。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在mian.c中</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>;</span><br><span class="line">    func();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在b.c中</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> num=<span class="number">5</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"fun in b.c"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里<code>main</code>函数中引用了<code>b.c</code>中的函数<code>func</code>。因为所有的函数都是全局的，所以对函数的<code>extern</code>用法和对全局变量的修饰基本相同，需要注意的就是，需要指明返回值的类型和参数。</p>
+<p>文章转自网络，查看原文章，请访问：<a href="http://blog.csdn.net/xingjiarong/article/details/47656339" target="_blank" rel="noopener">http://blog.csdn.net/xingjiarong/article/details/47656339</a></p>
+
       
     </div>
 
@@ -707,206 +531,12 @@
     
     <div>
     
-  </div>
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fanhang64.github.io/2019/05/08/numpy常用数组操作函数-md/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HangZo">
-      <meta itemprop="description" content="凡事预则立,不预则废">
-      <meta itemprop="image" content="/images/avatrar-main.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HangZo's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/08/numpy常用数组操作函数-md/" class="post-title-link" itemprop="url">numpy常用数组操作函数</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-08 23:34:59" itemprop="dateCreated datePublished" datetime="2019-05-08T23:34:59+08:00">2019-05-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-24 00:04:13" itemprop="dateModified" datetime="2019-05-24T00:04:13+08:00">2019-05-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据分析与机器学习/" itemprop="url" rel="index"><span itemprop="name">数据分析与机器学习</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/05/08/numpy常用数组操作函数-md/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/08/numpy常用数组操作函数-md/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="Numpy-数组操作函数"><a href="#Numpy-数组操作函数" class="headerlink" title="Numpy 数组操作函数"></a>Numpy 数组操作函数</h4><p>Numpy 中包含了一些函数用于处理数组，大概可分为以下几类：</p>
-<ul>
-<li>修改数组形状</li>
-<li>翻转数组</li>
-<li>连接数组</li>
-<li>分割数组</li>
-<li>数组元素的添加与删除
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/08/numpy常用数组操作函数-md/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </li></ul></div>
-
-    
-
-    
-    
-    
     <div>
     
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束感谢您的阅读-------------</div>
+    
+</div>
+    
   </div>
     
 
@@ -915,395 +545,68 @@
     
     
 
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>HangZo</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://fanhang64.github.io/2019/05/23/C语言正确使用extern关键字/" title="C语言正确使用extern关键字">https://fanhang64.github.io/2019/05/23/C语言正确使用extern关键字/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fanhang64.github.io/2019/05/07/hexo添加访问量统计/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HangZo">
-      <meta itemprop="description" content="凡事预则立,不预则废">
-      <meta itemprop="image" content="/images/avatrar-main.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HangZo's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/07/hexo添加访问量统计/" class="post-title-link" itemprop="url">hexo添加访问量统计</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-07 00:30:18 / 修改时间：00:46:10" itemprop="dateCreated datePublished" datetime="2019-05-07T00:30:18+08:00">2019-05-07</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hexo的使用/" itemprop="url" rel="index"><span itemprop="name">hexo的使用</span></a></span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/C语言/" rel="tag"> <i class="fa fa-tag"></i> C语言</a>
           
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/05/07/hexo添加访问量统计/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/07/hexo添加访问量统计/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <p>使用的是不蒜子提供的阅读统计功能，hexo主题是next。</p>
-<h4 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下:"></a>步骤如下:</h4><h5 id="1-添加是否开启统计功能的配置"><a href="#1-添加是否开启统计功能的配置" class="headerlink" title="1) 添加是否开启统计功能的配置"></a>1) 添加是否开启统计功能的配置</h5>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/07/hexo添加访问量统计/#more" rel="contents">
-                阅读全文 &raquo;
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/08/numpy常用数组操作函数-md/" rel="next" title="numpy常用数组操作函数">
+                <i class="fa fa-chevron-left"></i> numpy常用数组操作函数
               </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-    <div>
-    
-  </div>
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fanhang64.github.io/2019/05/05/numpy的基本使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HangZo">
-      <meta itemprop="description" content="凡事预则立,不预则废">
-      <meta itemprop="image" content="/images/avatrar-main.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HangZo's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/05/numpy的基本使用/" class="post-title-link" itemprop="url">numpy的基本使用</a>
-              
             
-          </h1>
-        
+          </div>
 
-        <div class="post-meta">
-          <span class="post-time">
+          <span class="post-nav-divider"></span>
 
+          <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/06/12/subtree的使用/" rel="prev" title="git subtree 的使用">
+                git subtree 的使用 <i class="fa fa-chevron-right"></i>
+              </a>
             
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-05 00:06:12" itemprop="dateCreated datePublished" datetime="2019-05-05T00:06:12+08:00">2019-05-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-08 23:35:47" itemprop="dateModified" datetime="2019-05-08T23:35:47+08:00">2019-05-08</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据分析与机器学习/" itemprop="url" rel="index"><span itemprop="name">数据分析与机器学习</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/05/05/numpy的基本使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/05/numpy的基本使用/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h4 id="NumPy的基本使用"><a href="#NumPy的基本使用" class="headerlink" title="NumPy的基本使用"></a>NumPy的基本使用</h4><p>Numpy是一个开源的Python科学计算库，它是Python进行科学计算的基础库，许多著名的科学计算库如Pandas，Scikit-learn等都要用到Numpy库的一些功能。NumPy根据BSD许可证授权，只需很少的限制即可重复使用。<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/05/numpy的基本使用/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-    <div>
-    
-  </div>
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1313,14 +616,19 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -1340,8 +648,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1465,6 +782,23 @@
     
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、引用同一个文件中的变量"><span class="nav-number">1.</span> <span class="nav-text">一、引用同一个文件中的变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、引用另一个文件中的变量"><span class="nav-number">2.</span> <span class="nav-text">二、引用另一个文件中的变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、引用另一个文件中的函数"><span class="nav-number">3.</span> <span class="nav-text">三、引用另一个文件中的函数</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1616,8 +950,10 @@
 
 
   
-    <script type="text/javascript" src="/js/fuqiang.js"></script>
-  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -1663,6 +999,8 @@
 
 
 
+
+  
 
 
   

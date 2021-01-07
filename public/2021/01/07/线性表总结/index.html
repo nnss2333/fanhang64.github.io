@@ -105,7 +105,7 @@
 <meta property="og:site_name" content="HangZo&#39;s blog">
 <meta property="og:description" content="线性表是相同类型数据元素的有限序列，也是一种逻辑结构。 线性表特点:存在唯一的一个被称为’第一个’的数据元素；存在唯一一个被称为’最后一个’的元素；除第一个元素，其余都有一个’前驱’，除最后一个，都有一个’后继’。 题型:计算二维数组按行(列)优先方式存放，指定元素的起始地址123例如:二维数组M[i][j]，每个元素长度为3字节，行下标0-7，列下标j从0-9，首地址为In,若按行优先存放，则">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-07T10:01:25.685Z">
+<meta property="og:updated_time" content="2021-01-07T10:19:12.045Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性表总结.md">
 <meta name="twitter:description" content="线性表是相同类型数据元素的有限序列，也是一种逻辑结构。 线性表特点:存在唯一的一个被称为’第一个’的数据元素；存在唯一一个被称为’最后一个’的元素；除第一个元素，其余都有一个’前驱’，除最后一个，都有一个’后继’。 题型:计算二维数组按行(列)优先方式存放，指定元素的起始地址123例如:二维数组M[i][j]，每个元素长度为3字节，行下标0-7，列下标j从0-9，首地址为In,若按行优先存放，则">
@@ -433,7 +433,7 @@
                 
               
 
-              <time title="创建时间：2021-01-07 17:59:22 / 修改时间：18:01:25" itemprop="dateCreated datePublished" datetime="2021-01-07T17:59:22+08:00">2021-01-07</time>
+              <time title="创建时间：2021-01-07 17:59:22 / 修改时间：18:19:12" itemprop="dateCreated datePublished" datetime="2021-01-07T17:59:22+08:00">2021-01-07</time>
             
 
             
@@ -509,6 +509,7 @@
 <li>题型:计算二维数组按行(列)优先方式存放，指定元素的起始地址<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">例如:二维数组M[i][j]，每个元素长度为3字节，行下标0-7，列下标j从0-9，首地址为In,</span><br><span class="line">若按行优先存放，则M[7][6]的起始地址为In+(7*10+6)*3。</span><br><span class="line">若按列优先存放，则地址In+(6*8+7)*3</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<a id="more"></a>
 <ol start="4">
 <li>线性表的结构体定义<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#define maxsize 100</span><br><span class="line"></span><br><span class="line"># 顺序表定义</span><br><span class="line">int A[maxsize];</span><br><span class="line">int length;</span><br><span class="line"></span><br><span class="line"># 链表结构体定义(单链表；循环单链表，最后结点指向头结点)</span><br><span class="line">typedef struct LNode&#123;</span><br><span class="line">    int data;</span><br><span class="line">    struct LNode *next;</span><br><span class="line">&#125;LNode;</span><br><span class="line"></span><br><span class="line"># 双链表结构体定义</span><br><span class="line">typedef struct DLNode&#123;</span><br><span class="line">    int data;</span><br><span class="line">    struct DLNode *prior;  // 指向前驱的指针</span><br><span class="line">    struct DLNode *next;</span><br><span class="line">&#125;DLNode;</span><br><span class="line"></span><br><span class="line"># 动态分配内存</span><br><span class="line">L.data = (ElemType *)malloc(sizeof(ElemType)*size);</span><br></pre></td></tr></table></figure>
 </li>

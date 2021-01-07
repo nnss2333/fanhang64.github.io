@@ -111,7 +111,7 @@
 <meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/f9ac41f3b088e3a8b31531bf7cfc2d0e?method=download&shareKey=75b142a1b1a23a24e81b9112935f0649&inline=true">
 <meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/1ae5f2b1f55398c9c3042d6305d7666c?method=download&shareKey=871831886cdd3046ffaa5008626c10cd&inline=true">
 <meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/e01a9e91af877fc978fdbcc1584733f4?method=download&shareKey=a2b74604a077f0c6c2bc667e2a395343&inline=true">
-<meta property="og:updated_time" content="2021-01-07T10:13:11.520Z">
+<meta property="og:updated_time" content="2021-01-07T10:18:16.350Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="查找总结">
 <meta name="twitter:description" content="基本概念 静态查找表：只进行查找操作，例如：顺序查找，折半查找，索引顺序表。 动态查找表：可进行查找，插入，删除，例如：二叉排序树，平衡二叉树(AVL树)，B树等。 平均查找长度(ASL)：关键字比较次数的平均值。  顺序查找 特点：简单，既可以顺序，也可以链式。 等概率情况下，查找成功的平均查找长度：ASL=(1+2+3..+n)/n = (1+n)/2。(第一次查找成功，比较1次，第二次比较两">
@@ -440,7 +440,7 @@
                 
               
 
-              <time title="创建时间：2021-01-07 18:11:50 / 修改时间：18:13:11" itemprop="dateCreated datePublished" datetime="2021-01-07T18:11:50+08:00">2021-01-07</time>
+              <time title="创建时间：2021-01-07 18:11:50 / 修改时间：18:18:16" itemprop="dateCreated datePublished" datetime="2021-01-07T18:11:50+08:00">2021-01-07</time>
             
 
             
@@ -520,7 +520,8 @@
 <li>等概率情况下，查找成功的平均查找长度：<strong>ASL=(1+2+3..+n)/n = (1+n)/2</strong>。(第一次查找成功，比较1次，第二次比较两次成功…)</li>
 <li>顺序查找的判定树为一棵深度为n的单分支的树。</li>
 <li>时间复杂度为O(n)</li>
-<li>代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 在数组a的前n个元素中查找x</span><br><span class="line">int search(int a[], int n, int x) // n为长度，x为要查找的元素</span><br><span class="line">&#123;</span><br><span class="line">    for (int i = n-1; i&gt;= 0;i++)&#123;</span><br><span class="line">        if (a[i] == x)&#123;</span><br><span class="line">           return i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;  //未找到</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>代码：<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 在数组a的前n个元素中查找x</span><br><span class="line">int search(int a[], int n, int x) // n为长度，x为要查找的元素</span><br><span class="line">&#123;</span><br><span class="line">    for (int i = n-1; i&gt;= 0;i++)&#123;</span><br><span class="line">        if (a[i] == x)&#123;</span><br><span class="line">           return i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;  //未找到</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h3><ol>

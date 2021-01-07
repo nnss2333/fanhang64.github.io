@@ -97,19 +97,19 @@
 
 
 
-  <meta name="description" content="串是逻辑结构，是限定元素为字符的线性表，用单引号括起来的字符序列是串的值。 空串：零个字符的串，长度为0。 空格串：由空格组成的串。 子串：串中的任意连续的子序列。 子串在主串中位置：子串中第一个字符在主串中位置(从1开始)。 主串：包含子串的串。 串相等：长度相等，对应字符相等。 模式匹配是串的一种重要操作。(模式匹配就是找子串的位置) 串的存储结构：①定长顺序串;②堆分配存储;③块链存储 基">
+  <meta name="description" content="串是逻辑结构，是限定元素为字符的线性表，用单引号括起来的字符序列是串的值。 空串：零个字符的串，长度为0。 空格串：由空格组成的串。 子串：串中的任意连续的子序列。 子串在主串中位置：子串中第一个字符在主串中位置(从1开始)。 主串：包含子串的串。 串相等：长度相等，对应字符相等。 模式匹配是串的一种重要操作。(模式匹配就是找子串的位置) 串的存储结构：①定长顺序串;②堆分配存储;③块链存储">
 <meta name="keywords" content="串 KMP算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="串总结">
 <meta property="og:url" content="https://fanhang64.github.io/2021/01/07/串总结/index.html">
 <meta property="og:site_name" content="HangZo&#39;s blog">
-<meta property="og:description" content="串是逻辑结构，是限定元素为字符的线性表，用单引号括起来的字符序列是串的值。 空串：零个字符的串，长度为0。 空格串：由空格组成的串。 子串：串中的任意连续的子序列。 子串在主串中位置：子串中第一个字符在主串中位置(从1开始)。 主串：包含子串的串。 串相等：长度相等，对应字符相等。 模式匹配是串的一种重要操作。(模式匹配就是找子串的位置) 串的存储结构：①定长顺序串;②堆分配存储;③块链存储 基">
+<meta property="og:description" content="串是逻辑结构，是限定元素为字符的线性表，用单引号括起来的字符序列是串的值。 空串：零个字符的串，长度为0。 空格串：由空格组成的串。 子串：串中的任意连续的子序列。 子串在主串中位置：子串中第一个字符在主串中位置(从1开始)。 主串：包含子串的串。 串相等：长度相等，对应字符相等。 模式匹配是串的一种重要操作。(模式匹配就是找子串的位置) 串的存储结构：①定长顺序串;②堆分配存储;③块链存储">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/459e8acaa3f757f222d47f642f2ab031?method=download&shareKey=9e7463821d6f6ecaeddd5632c9fec614&inline=true">
-<meta property="og:updated_time" content="2021-01-07T10:04:16.436Z">
+<meta property="og:updated_time" content="2021-01-07T10:25:39.996Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="串总结">
-<meta name="twitter:description" content="串是逻辑结构，是限定元素为字符的线性表，用单引号括起来的字符序列是串的值。 空串：零个字符的串，长度为0。 空格串：由空格组成的串。 子串：串中的任意连续的子序列。 子串在主串中位置：子串中第一个字符在主串中位置(从1开始)。 主串：包含子串的串。 串相等：长度相等，对应字符相等。 模式匹配是串的一种重要操作。(模式匹配就是找子串的位置) 串的存储结构：①定长顺序串;②堆分配存储;③块链存储 基">
+<meta name="twitter:description" content="串是逻辑结构，是限定元素为字符的线性表，用单引号括起来的字符序列是串的值。 空串：零个字符的串，长度为0。 空格串：由空格组成的串。 子串：串中的任意连续的子序列。 子串在主串中位置：子串中第一个字符在主串中位置(从1开始)。 主串：包含子串的串。 串相等：长度相等，对应字符相等。 模式匹配是串的一种重要操作。(模式匹配就是找子串的位置) 串的存储结构：①定长顺序串;②堆分配存储;③块链存储">
 <meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/459e8acaa3f757f222d47f642f2ab031?method=download&shareKey=9e7463821d6f6ecaeddd5632c9fec614&inline=true">
 
 
@@ -435,7 +435,7 @@
                 
               
 
-              <time title="创建时间：2021-01-07 18:03:38 / 修改时间：18:04:16" itemprop="dateCreated datePublished" datetime="2021-01-07T18:03:38+08:00">2021-01-07</time>
+              <time title="创建时间：2021-01-07 18:03:38 / 修改时间：18:25:39" itemprop="dateCreated datePublished" datetime="2021-01-07T18:03:38+08:00">2021-01-07</time>
             
 
             
@@ -514,7 +514,9 @@
 <li>主串：包含子串的串。</li>
 <li>串相等：长度相等，对应字符相等。</li>
 <li>模式匹配是串的一种重要操作。(模式匹配就是找子串的位置)</li>
-<li>串的存储结构：①定长顺序串;②堆分配存储;③块链存储</li>
+<li><p>串的存储结构：①定长顺序串;②堆分配存储;③块链存储</p>
+<a id="more"></a>
+</li>
 <li><p>基本操作：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">assign(s,t)  // 将t赋值给s</span><br><span class="line">create(s,cs)  // 讲cs字符创建为字符串</span><br><span class="line">Equal(s,t)   // 判断s与t是否相等</span><br><span class="line">Length(s)    // 求s的长度</span><br><span class="line">Concat(s,t)  // 串连接，返回连接后新串。例如：concat(&quot;ab&quot;, &quot;cd&quot;) = &quot;abcd&quot;</span><br><span class="line">Substr(s,pos,len)  // 从pos位置开始取len长度的子串。pos从1开始取，且包含pos位置</span><br><span class="line">Index(s,t)  // 求子串t在中位置，查找失败时候返回0。例如Index(&quot;abc&quot;,&quot;ab&quot;)=1</span><br><span class="line">replace(s,t,v)  // 将s中的t字符串用v替代。例如replace(&quot;abc&quot;,&quot;ab&quot;, &quot;d&quot;)=&quot;dc&quot;</span><br><span class="line">subcompare(s, t)  // 比较字符串大小。若s＞t，返回值＞0;s小于t时，返回值小于0;s=t时，返回值=0</span><br></pre></td></tr></table></figure>
 </li>

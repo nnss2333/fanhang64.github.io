@@ -1,7 +1,7 @@
 ---
 title: hexo添加访问量统计
 date: 2019-05-07 00:30:18
-tags: hexo的入门
+tags: hexo的使用
 categories: hexo的使用
 ---
 

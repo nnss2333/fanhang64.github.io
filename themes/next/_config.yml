@@ -163,8 +163,8 @@ menu:
   categories: /categories/ || th
   archives: /archives/ || archive
   # schedule: /schedule/ || calendar
-  about: /about/ || user
-  tools: /tools || download
+  # about: /about/ || user
+  # tools: /tools || download
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
 

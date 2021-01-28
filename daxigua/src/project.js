@@ -2208,7 +2208,8 @@ window.__require = function e(t, n, o) {
         cc._RF.push(t, "197e1hfNnxIcJx73V3VhUxY", "HttpManagerJs");
         var a = e("GameConfig")
           , i = (c(o = {
-            //URL: "http://www.wesane.com/h5service.php/Interface/services",
+            URL: "http://www.wesane.com/h5service.php/Interface/services",
+            // URL:"https://www.baidu.com",
             cacheList: null,
             isBusy: null,
             req: null,
@@ -2255,6 +2256,7 @@ window.__require = function e(t, n, o) {
                     languageType: e
                 }
                   , o = "send=" + JSON.stringify(n);
+                
                 this.req.send(o)
             }
         }),

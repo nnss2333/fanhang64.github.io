@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<link rel="stylesheet" href="/live2d/css/live2d.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="稳定性：如果存在重复关键字，原则排序算法时，要考虑稳定性。例如：50(a)在50(b)之前，排完序后扔在之前，说明稳定  插入类排序1) 直接插入 将待排序记录，插入到已排好的有序序列中，重复n-1次 代码12345678910111213void insertSort(int a[], int n)&amp;#123;  // 带排序数组在a，元素个数为n，从下标1开始存储    int i,j;">
+<meta name="keywords" content="排序,快速排序,希尔排序,堆排序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="排序总结">
+<meta property="og:url" content="https://fanhang64.github.io/2021/01/07/排序总结/index.html">
+<meta property="og:site_name" content="HangZo&#39;s blog">
+<meta property="og:description" content="稳定性：如果存在重复关键字，原则排序算法时，要考虑稳定性。例如：50(a)在50(b)之前，排完序后扔在之前，说明稳定  插入类排序1) 直接插入 将待排序记录，插入到已排好的有序序列中，重复n-1次 代码12345678910111213void insertSort(int a[], int n)&amp;#123;  // 带排序数组在a，元素个数为n，从下标1开始存储    int i,j;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/45214150543925a7729207ebc8bd5b0a?method=download&shareKey=d6cf23e227d13460e26c02b27a95d048&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/fc851c8a4bd12df84c782bb29b3bdfe9?method=download&shareKey=7c98ec6d04f8d0333fa092b17c70417c&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/9b03ac6a5228765d4a77ecdee3d70296?method=download&shareKey=a1ca6aca17cbde7dda54073c8ad8871b&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/36661b60354f07083588229b02628daf?method=download&shareKey=02b481903df743c9aac03658dc05e85e&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/1bff17da0cf9e080f5476ee0edba7976?method=download&shareKey=e810aad6bca823f01837cfa0e5870dd6&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/a6d2ceb55beef4794ed89d71b3de614b?method=download&shareKey=154ed00504029a45d60c305df90620aa&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/303eb325e9a3928c72faef8b38fdde7f?method=download&shareKey=291f27ed0393155ae780a0558af728ec&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/65eca0e6dbb347bf266974503d88c484?method=download&shareKey=b319e8f827ab9254298dd89daed74e50&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/f4d481492697fb085c8f0a6cc9ddbae5?method=download&shareKey=7399b697cb1bc8608eab868d94bdfbd3&inline=true">
+<meta property="og:updated_time" content="2021-01-28T14:31:44.124Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="排序总结">
+<meta name="twitter:description" content="稳定性：如果存在重复关键字，原则排序算法时，要考虑稳定性。例如：50(a)在50(b)之前，排完序后扔在之前，说明稳定  插入类排序1) 直接插入 将待排序记录，插入到已排好的有序序列中，重复n-1次 代码12345678910111213void insertSort(int a[], int n)&amp;#123;  // 带排序数组在a，元素个数为n，从下标1开始存储    int i,j;">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/45214150543925a7729207ebc8bd5b0a?method=download&shareKey=d6cf23e227d13460e26c02b27a95d048&inline=true">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HangZo's blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://fanhang64.github.io/2021/01/07/排序总结/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>排序总结 | HangZo's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HangZo's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fanhang64.github.io/2021/01/07/排序总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HangZo">
+      <meta itemprop="description" content="凡事预则立,不预则废">
+      <meta itemprop="image" content="/images/avatrar-main.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HangZo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">排序总结
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-01-07 18:13:21" itemprop="dateCreated datePublished" datetime="2021-01-07T18:13:21+08:00">2021-01-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-01-28 22:31:44" itemprop="dateModified" datetime="2021-01-28T22:31:44+08:00">2021-01-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构与算法/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2021/01/07/排序总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/01/07/排序总结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li>稳定性：如果存在重复关键字，原则排序算法时，要考虑稳定性。例如：50(a)在50(b)之前，排完序后扔在之前，说明稳定</li>
+</ol>
+<h3 id="插入类排序"><a href="#插入类排序" class="headerlink" title="插入类排序"></a>插入类排序</h3><h4 id="1-直接插入"><a href="#1-直接插入" class="headerlink" title="1) 直接插入"></a>1) 直接插入</h4><ol>
+<li>将待排序记录，插入到已排好的有序序列中，重复n-1次</li>
+<li>代码<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insertSort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span></span>&#123;  <span class="comment">// 带排序数组在a，元素个数为n，从下标1开始存储</span></span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i] &lt; a[i<span class="number">-1</span>])&#123; <span class="comment">// 如果是为正序，这里不执行。</span></span><br><span class="line">            a[<span class="number">0</span>] = a[i];  <span class="comment">// a[0]为哨兵</span></span><br><span class="line">            <span class="keyword">for</span>(j=i<span class="number">-1</span>;a[<span class="number">0</span>]&lt;a[j];--j)&#123;</span><br><span class="line">                a[j+<span class="number">1</span>] = a[j];</span><br><span class="line">            &#125;</span><br><span class="line">            a[j+<span class="number">1</span>] = a[<span class="number">0</span>];  <span class="comment">// 找到插入位置，将暂存关键字插入</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<a id="more"></a>
+<ol start="3">
+<li>例题<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/45214150543925a7729207ebc8bd5b0a?method=download&amp;shareKey=d6cf23e227d13460e26c02b27a95d048&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+<li>分析<blockquote>
+<p>1) 最坏情况，整个序列逆序的，此时时间复杂度为O(n^2)<br><br>2) 最好的情况，整个序列已经有序，内层循环不执行，则时间复杂度为O(n)。<br><br>3) 空间复杂度为O(1)<br><br>4) 一趟排序后，不能确定一个关键字到达最后位置。插入类排序共同特点<br><br>5) 一种稳定排序算法<br>6) 直接插入最坏情况下，比较次数为n(n-1)/2，最好情况下为n-1</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="2-折半插入"><a href="#2-折半插入" class="headerlink" title="2) 折半插入"></a>2) 折半插入</h4><ol>
+<li>折半插入排序，通过折半查找法确定插入位置。</li>
+<li>基本条件：<strong>序列已经有序</strong>。</li>
+<li><p>例题</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/fc851c8a4bd12df84c782bb29b3bdfe9?method=download&amp;shareKey=7c98ec6d04f8d0333fa092b17c70417c&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+<li><p>代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,low,high,mid;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;i++)&#123; <span class="comment">// 将a[2]至a[n]插入到前面已经排好序的序列</span></span><br><span class="line">        a[<span class="number">0</span>]=a[i];</span><br><span class="line">        low = <span class="number">1</span>; high= i<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(low &lt;= high)&#123;</span><br><span class="line">            mid = (low+high) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(a[mid] &gt; a[<span class="number">0</span>])&#123;</span><br><span class="line">                high = mid <span class="number">-1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                low =mid+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(j=i<span class="number">-1</span>;j&gt;=high+<span class="number">1</span>;--j)&#123;</span><br><span class="line">            a[j+<span class="number">1</span>] = a[j];</span><br><span class="line">        &#125;</span><br><span class="line">        a[j+<span class="number">1</span>] = a[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>性能分析</p>
+<blockquote>
+<p>1) 平均时间复杂度O(n^2)<br><br>2) 稳定的插入排序<br><br>3) 关键字比较次数与初始序列无关。<br>4) 只是比直接插入少了比较次数，约为O(nlogn)</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="3-希尔排序"><a href="#3-希尔排序" class="headerlink" title="3) 希尔排序"></a>3) 希尔排序</h4><ol>
+<li>先将待排序序列分割成若干个子序列，分别进行直接插入排序，基本有序后，在整体进行直接插入排序。</li>
+<li><p>步骤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1) 按照增量d，将序列分成几个子序列。</span><br><span class="line">2) 对子序列排序(直接插入排序)</span><br><span class="line">3) 缩小增量d，重复1，2步，直到增量d=1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 希尔排序</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shellInsert</span><span class="params">(sqList &amp;L, <span class="keyword">int</span> dk)</span></span>&#123;   <span class="comment">// L顺序表，dk为增量</span></span><br><span class="line">    <span class="keyword">for</span>(i = dk+<span class="number">1</span>;i≤L.length;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(L.r[i].key&lt;L.r[i-dk].key)&#123;  <span class="comment">// </span></span><br><span class="line">            L.r[<span class="number">0</span>] = L.r[i];  <span class="comment">// 暂存到L.r[0]</span></span><br><span class="line">            <span class="keyword">for</span>(j=i-dk; j&gt;<span class="number">0</span> &amp;&amp; (L.r[<span class="number">0</span>].key &lt; L.r[j].key); j-=dk)&#123;  <span class="comment">// 记录后移，寻找插入位置</span></span><br><span class="line">                L.r[j+dk] = L.r[j];</span><br><span class="line">            &#125;</span><br><span class="line">            L.r[j+dk] = L.r[<span class="number">0</span>];  <span class="comment">// 插入到指定位置</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>例题</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/9b03ac6a5228765d4a77ecdee3d70296?method=download&amp;shareKey=a1ca6aca17cbde7dda54073c8ad8871b&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+<li><p>性能分析</p>
+<blockquote>
+<p>1) 希尔排序增量最后一定为1<br>2) 希尔排序为不稳定排序。<br>3) 时间复杂度大约为O(n^1.5)<br>4) 空间复杂度为O(1)<br>5) 按增量分组，组内采用直接插入排序。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="交换类排序"><a href="#交换类排序" class="headerlink" title="交换类排序"></a>交换类排序</h3><h4 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1) 冒泡排序"></a>1) 冒泡排序</h4><ol>
+<li>依次比较相邻元素，逆序则交换，n个元素重复n-1次。</li>
+<li><p>冒泡排序<strong>一趟确定一个元素的最终位置</strong>(可能会多次交换)。</p>
+</li>
+<li><p>代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">void bubblesorSort(int a[], int n)&#123;  // 数组元素下标从0-n-1</span><br><span class="line">    for(i=n-1; i&gt;=1;i--)&#123; // n个关键字最多要n-1趟</span><br><span class="line">        flag = 0;</span><br><span class="line">        for(j=1;j&lt;=i;j++)&#123;</span><br><span class="line">            if(a[j-1]&gt;a[j])&#123;</span><br><span class="line">                temp = a[j-1];</span><br><span class="line">                a[j-1] = a[j];</span><br><span class="line">                a[j] = temp;</span><br><span class="line">                flag = 1; // 如果没发生交换，则flag为0，发生交换值为1</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(flag == 0)&#123; // 如果一趟排序，没有发生关键字交换，则证明有序，排序结束。</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>性能分析</p>
+<blockquote>
+<p>1) n个关键字，需要n-1趟<br>2) 时间复杂度最坏情况，为逆序序列，时间复杂度为O(n^2)<br>3) 最好情况，序列有序，内层循环if始终不成立，flag为0，内层循环执行n-1次比较，执行结束。<br>4) 空间复杂度为O(1)<br>5) 每一趟都会确定一个元素在最终位置上。<br>6) 24个关键字，冒泡排序最少比较次数23次(本代码中的第1趟)。</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="2-快速排序"><a href="#2-快速排序" class="headerlink" title="2) 快速排序"></a>2) 快速排序</h4><ol>
+<li>每一趟选择当前所有子序列的一个关键字(通常第一个)作为枢轴，将子序列中比枢轴小的移到枢轴前，比枢轴大的元素，移动到枢轴后。</li>
+<li><p>例题</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/36661b60354f07083588229b02628daf?method=download&amp;shareKey=02b481903df743c9aac03658dc05e85e&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+<li><p>代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">void QuickSort(int a[], int low, int high)&#123;</span><br><span class="line">   int pivot;</span><br><span class="line">   int i = low;</span><br><span class="line">   int j = high;</span><br><span class="line">   if(low &lt; high)&#123;</span><br><span class="line">       pivot = a[low];</span><br><span class="line">       while(i&lt;j)&#123;</span><br><span class="line">           while(i&lt;j &amp;&amp; a[j] &gt;= pivot) j--;  // 找小于pivot的位置</span><br><span class="line">           a[i] = a[j];</span><br><span class="line">           while(i&lt;j &amp;&amp; a[i] &lt;= pivot) i++;</span><br><span class="line">           a[j] = a[i];</span><br><span class="line">       &#125;</span><br><span class="line">       a[i] = pivot;</span><br><span class="line">       QuickSort(a, low, i-1);</span><br><span class="line">       QuickSort(a, i+1, high);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>性能分析</p>
+<blockquote>
+<p>1) 平均时间复杂度O(nlogn)，最坏情况时间复杂度为O(n^2)<br>2) 平均空间复杂度为O(logn)，递归进行，需要用到栈，最坏情况下为O(n)。<br>3) 待排序列越接近无序，算法效率越好；若序列基本有序，则退化为冒泡排序。<br>4) 快速排序是不稳定的排序算法。<br>5) 当每次的枢轴把表等分为两个长度相近的子表时候，速度最快。例如：第一趟，枢轴值21将表划分为两个子表{9，17，5}和{25，23，30}<br>6) 快排<strong>每趟可以有一个元素处于最终位置</strong> 上。(枢轴处于最终位置)<br>7) 如果第一趟执行完(8，9，4，3，6，1)，10，(12，18，18)，第二趟执行结束为(1，6，4，3)，8，(9)，10，12，(18，18)，两个子序列同时排序，算第二趟。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="选择类排序"><a href="#选择类排序" class="headerlink" title="选择类排序"></a>选择类排序</h3><h4 id="1-简单选择排序"><a href="#1-简单选择排序" class="headerlink" title="1) 简单选择排序"></a>1) 简单选择排序</h4><ol>
+<li>在待排序列中，选取最小的，交换到合适位置，重复n-1次(n-1趟)。</li>
+<li>每一趟存在多次比较，找出最小的元素下标。</li>
+<li><p>代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void selectionsorSort(int a[], int n)&#123;</span><br><span class="line">    for(i=0;i&lt;n-1;i++)&#123;</span><br><span class="line">        k = i;</span><br><span class="line">        for(j=i+1;j&lt;n;j++)&#123;</span><br><span class="line">            if(a[j] &lt; a[k]) k=j;  // 最小元素下标</span><br><span class="line">        &#125;</span><br><span class="line">        if(k!=i) a[i]←→[k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>性能分析</p>
+<blockquote>
+<p>1) 时间复杂度为O(n^2)<br>2) 循环的执行次数与初始序列无关。<br>3) 空间复杂度为O(1)<br>4) 简单选择为不稳定的算法。</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="2-堆排序-适用于关键字较多"><a href="#2-堆排序-适用于关键字较多" class="headerlink" title="2) 堆排序(适用于关键字较多)"></a>2) 堆排序(适用于关键字较多)</h4><ol>
+<li>堆排序可以看成一棵<strong>完全二叉树</strong>，任何非叶结点的值，都不大于其左右孩子结点的值。</li>
+<li>大顶堆(升序)：父结点大，孩子小(大顶堆的堆顶为最大元素)。</li>
+<li>小顶堆(降序)：孩子大，父结点小(小顶堆的堆顶为最小元素)。</li>
+<li><p>例题：判断是否构成堆</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/1bff17da0cf9e080f5476ee0edba7976?method=download&amp;shareKey=e810aad6bca823f01837cfa0e5870dd6&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+<li><p>建立堆(筛选法，反复筛选的过程)，插入结点，删除结点</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/a6d2ceb55beef4794ed89d71b3de614b?method=download&amp;shareKey=154ed00504029a45d60c305df90620aa&amp;inline=true" alt="image"></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">插入结点：插入结点时候，需要先将插入的结点x，放在最低层的最右边，然后对插入后的堆进行调整。</span><br><span class="line">删除结点：删除结点时候，用最底层最右边的结点，覆盖删除结点的位置，并重新调整。</span><br><span class="line"></span><br><span class="line">用筛选法构造初始堆，n个元素，必须从第 n/2下取整  个元素开始进行筛选。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>例题：堆排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">步骤：</span><br><span class="line">1) 首先建好大顶堆(或小顶堆)，输出堆顶x，再将堆顶元素x和最后一个元素y(编号最后)交换。</span><br><span class="line">2) 重新调整，并重复</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>   如题：</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/303eb325e9a3928c72faef8b38fdde7f?method=download&amp;shareKey=291f27ed0393155ae780a0558af728ec&amp;inline=true" alt="image"></p>
+</blockquote>
+<ol start="7">
+<li><p>代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> sqlist HeapType;  <span class="comment">// 顺序表存储</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HeapAdjust</span><span class="params">(HeapType &amp;H, <span class="keyword">int</span> s, <span class="keyword">int</span> m)</span></span>&#123;</span><br><span class="line">     rc = H.r[s];</span><br><span class="line">     <span class="keyword">for</span>(j=<span class="number">2</span>*s; j≤m; j*=<span class="number">2</span>)&#123;</span><br><span class="line">         <span class="keyword">if</span>(j&lt;m &amp;&amp; (H.r[j].key &lt; H.r[j+<span class="number">1</span>].key)) ++j;</span><br><span class="line">         <span class="keyword">if</span>(rc.key ≥ H.r[j].key) <span class="keyword">break</span>;</span><br><span class="line">     </span><br><span class="line">         H.r[s] = H.r[j]; s= j;</span><br><span class="line">     &#125;</span><br><span class="line"> </span><br><span class="line">     H.r[s] = rc;  <span class="comment">//插入</span></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">Heapsort</span><span class="params">(HeapType &amp;H)</span></span>&#123;</span><br><span class="line">     <span class="comment">// 对顺序表H进行堆排序</span></span><br><span class="line"> </span><br><span class="line">     <span class="comment">// 这里是将顺序表构建为堆</span></span><br><span class="line">     <span class="keyword">for</span>(i=H.length/<span class="number">2</span>;i&gt;<span class="number">0</span>; --i)&#123;  <span class="comment">// 最后一个非叶子结点开始筛选，最后一个非叶节点为length/2。</span></span><br><span class="line">         HeadAdjust(H,i,H.length);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">for</span>(i=H.length; i&gt;<span class="number">1</span>; --i)&#123;</span><br><span class="line">         H.r[<span class="number">1</span>] ↔ H.r[i];  <span class="comment">// 将堆顶元素和当前未经排序子序列H.r[1...i]的最后一个记录互换</span></span><br><span class="line">         HeapAdjust(H,<span class="number">1</span>,i<span class="number">-1</span>); <span class="comment">// 将剩余的H.r[1...i-1]重新调整为大顶堆</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>性能分析</p>
+<blockquote>
+<ol>
+<li>堆排序不稳定。</li>
+<li>建立堆的时间复杂度为O(n), 时间复杂度最好，最坏，平均都为O(nlogn)</li>
+<li>空间复杂度为O(1)</li>
+<li>适用于关键字较多的情况(例如：10000个关键字选出前10个)</li>
+<li>以二叉树的任意结点出发到根的路径上所经过的结点序列按其关键字有序。</li>
+<li>具有n个结点插入新元素的时间复杂度为O(logn)，删除一个元素的时间复杂度为O(logn)</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<h3 id="2路归并排序"><a href="#2路归并排序" class="headerlink" title="2路归并排序"></a>2路归并排序</h3><ol>
+<li><p>例题</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/65eca0e6dbb347bf266974503d88c484?method=download&amp;shareKey=b319e8f827ab9254298dd89daed74e50&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+<li><p>性能分析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 时间复杂度为O(nlogn)</span><br><span class="line">2. 空间复杂度为O(n)</span><br><span class="line">3. 归并排序一轮不会确定一个元素的最终位置。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h3><ol>
+<li>多关键字排序</li>
+<li>最高位优先：先按最高位排成若干子序列，然后在对子序列按次高排序。</li>
+<li>最低位优先：采用“分配”和“收集”策略。</li>
+<li><p>例题</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/f4d481492697fb085c8f0a6cc9ddbae5?method=download&amp;shareKey=7399b697cb1bc8608eab868d94bdfbd3&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+<li><p>性能分析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 对n个元素进行基数排序，每个数据基数为rd(基数为每个位的范围，例如从0-9)，有d位数字(每个关键字位数)，一趟分配和收集用时n+rd，共d趟，故总时间复杂度为O(d(n+rd))</span><br><span class="line">2. 基数排序为稳定算法。</span><br><span class="line">3. 基数排序，不需要进行关键字比较。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="内部排序总结"><a href="#内部排序总结" class="headerlink" title="内部排序总结"></a>内部排序总结</h3><ol>
+<li>时间复杂度：平均情况下，快排，希尔，堆排序，归并排序，时间复杂度都为O(nlog<sub>2</sub>n)，其余都为O(n^2)</li>
+<li>空间复杂度：快排O(log<sub>2</sub>n)，归并为O(n)，基数为O(rd)，其余都为O(1)</li>
+<li><strong>直接插入和冒泡</strong>，在初始序列已经有序时，时间复杂度为<strong>O(n)</strong></li>
+<li>稳定性：快排，希尔，堆排序，简单选择，四种为不稳定，其余都为稳定。</li>
+<li>经过一趟排序，<strong>可以保证关键字达到最终位置</strong>，是<strong>交换类</strong>(气泡，快排)和<strong>选择类</strong>(简单选择，堆)排序。</li>
+<li><strong>关键字比较次数与初始序列无关</strong>：简单选择和折半插入</li>
+<li><strong>排序趟数与原始序列有关</strong>：交换类(冒泡，快排)</li>
+</ol>
+<h3 id="外部排序总结"><a href="#外部排序总结" class="headerlink" title="外部排序总结"></a>外部排序总结</h3><ol>
+<li>m个初始归并段进行k路归并，归并的趟数为<sup>┌</sup>log<sub>k</sub>m<sup>┐</sup></li>
+<li>每一次归并，所有记录都要进行<strong>两次I/O操作</strong></li>
+<li>置换-选择排序中，所有记录都要进行<strong>两次I/O操作</strong></li>
+<li>K路归并的败者树的高度为<sup>┌</sup>log<sub>2</sub>k<sup>┐</sup>+1，因此利用败者树从k个记录中选出最值需要进行<sup>┌</sup>log<sub>2</sub>k<sup>┐</sup>次比较，即时间复杂度为O(log<sub>2</sub>k)</li>
+<li>k路归并败者树的建树时间复杂度为O(klog<sub>2</sub>k)</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束感谢您的阅读-------------</div>
+    
+</div>
+    
+  </div>
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>HangZo</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://fanhang64.github.io/2021/01/07/排序总结/" title="排序总结">https://fanhang64.github.io/2021/01/07/排序总结/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/排序/" rel="tag"> <i class="fa fa-tag"></i> 排序</a>
+          
+            <a href="/tags/快速排序/" rel="tag"> <i class="fa fa-tag"></i> 快速排序</a>
+          
+            <a href="/tags/希尔排序/" rel="tag"> <i class="fa fa-tag"></i> 希尔排序</a>
+          
+            <a href="/tags/堆排序/" rel="tag"> <i class="fa fa-tag"></i> 堆排序</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/07/查找总结/" rel="next" title="查找总结">
+                <i class="fa fa-chevron-left"></i> 查找总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatrar-main.jpg" alt="HangZo">
+            
+              <p class="site-author-name" itemprop="name">HangZo</p>
+              <div class="site-description motion-element" itemprop="description">凡事预则立,不预则废</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/fanhang64" title="GitHub &rarr; https://github.com/fanhang64" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:fanhang64@gmail.com" title="E-Mail &rarr; mailto:fanhang64@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+          
+            
+          
+          
+
+        </div>
+
+
+      <div id="music163player">
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=586299&auto=0&height=66"></iframe>
+      </div>
+      <div id="blogRoll">
+          
+      </div>
+  <style>
+    #days {
+      display: block;
+      color: rgb(7, 179, 155);
+      font-size: 13px;
+      margin-top: 15px;
+    }
+  </style>
+<div id="days"></div>
+<script language="javascript">
+    function show_date_time(){
+      window.setTimeout("show_date_time()", 1000);
+      BirthDay=new Date("05/01/2019 00:00:00"); //日期自定义
+      today=new Date();
+      timeold=(today.getTime()-BirthDay.getTime());
+      sectimeold=timeold/1000
+      secondsold=Math.floor(sectimeold);
+      msPerDay=24*60*60*1000
+      e_daysold=timeold/msPerDay
+      daysold=Math.floor(e_daysold);
+      e_hrsold=(e_daysold-daysold)*24;
+      hrsold=setzero(Math.floor(e_hrsold));
+      e_minsold=(e_hrsold-hrsold)*60;
+      minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+      seconds=setzero(Math.floor((e_minsold-minsold)*60));
+      document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+    }
+    function setzero(i){
+      if (i<10)
+      {
+        i="0" + i
+      };
+      return i;
+    }
+    show_date_time();
+</script>
+
+    
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入类排序"><span class="nav-number">1.</span> <span class="nav-text">插入类排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-直接插入"><span class="nav-number">1.1.</span> <span class="nav-text">1) 直接插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-折半插入"><span class="nav-number">1.2.</span> <span class="nav-text">2) 折半插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-希尔排序"><span class="nav-number">1.3.</span> <span class="nav-text">3) 希尔排序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交换类排序"><span class="nav-number">2.</span> <span class="nav-text">交换类排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-冒泡排序"><span class="nav-number">2.1.</span> <span class="nav-text">1) 冒泡排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-快速排序"><span class="nav-number">2.2.</span> <span class="nav-text">2) 快速排序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择类排序"><span class="nav-number">3.</span> <span class="nav-text">选择类排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-简单选择排序"><span class="nav-number">3.1.</span> <span class="nav-text">1) 简单选择排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-堆排序-适用于关键字较多"><span class="nav-number">3.2.</span> <span class="nav-text">2) 堆排序(适用于关键字较多)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2路归并排序"><span class="nav-number">4.</span> <span class="nav-text">2路归并排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基数排序"><span class="nav-number">5.</span> <span class="nav-text">基数排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部排序总结"><span class="nav-number">6.</span> <span class="nav-text">内部排序总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外部排序总结"><span class="nav-number">7.</span> <span class="nav-text">外部排序总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </div></aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner" style="text-align: center;">
+        <div class="copyright">
+&copy; 2019 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HangZo</span>
+  
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">&nbsp;&nbsp;总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+  
+  
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  Count by <a href="https://busuanzi.ibruce.info/" class="theme-link" rel="noopener" target="_blank">busuanzi</a>
+
+
+<!-- 血小板 -->
+  <div id="landlord">
+      <div class="message" style="opacity:0"></div>
+      <canvas id="live2d" width="560" height="500" class="live2d"></canvas>
+      <div class="hide-button">隐藏</div>
+  </div>
+
+  <!-- live2d 血小板 -->
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+    var message_Path = '/live2d/'
+    var home_Path = 'https://haremu.com/'
+</script>
+<script type="text/javascript" src="/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="/live2d/js/message.js"></script>
+<script type="text/javascript">
+    loadlive2d("live2d", "/live2d/model/xiaoban/model.json");
+</script>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'zUSi1NeG8Q34NN97kqI0P2vf-gzGzoHsz',
+    appKey: 'zOmcvbJEeRDi0vXQJFWRtxG3',
+    placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

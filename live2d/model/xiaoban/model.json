@@ -1,0 +1,1 @@
+{"type":"Live2D Model Setting","name":"model","model":"model.moc","textures":["https://i.loli.net/2019/08/27/JkeFScEC5UHbfIG.png"],"motions":{"idle":[{"file":"motions/Idle.mtn"}],"sleepy":[{"file":"motions/Nemui.mtn"}],"flick_head":[{"file":"motions/Anone_Synced.mtn"}],"tap_body":[{"file":"motions/Dance.mtn"}]}}

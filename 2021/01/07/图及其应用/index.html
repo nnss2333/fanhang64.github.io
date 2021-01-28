@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<link rel="stylesheet" href="/live2d/css/live2d.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="图由结点和边的集合构成。(图不可为空图，树可为空树) 在无向图中，边(vi,vj)等价于有向图的&amp;lt;vi,vj&amp;gt;与&amp;lt;vj,vi&amp;gt;。 在无向图中，与顶点相关边的条数为顶点的度。 在有向图中，指向顶点的度，由顶点发出的边的条数为顶点的出度。 有向完全图：若有向图有n个顶点，则最多有n(n-1)条边[任意两个顶点两条边]。 无向完全图：有n个顶点，任意两个顶点之间都存在边，最多有">
+<meta name="keywords" content="图,图的遍历,图的应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图及其应用">
+<meta property="og:url" content="https://fanhang64.github.io/2021/01/07/图及其应用/index.html">
+<meta property="og:site_name" content="HangZo&#39;s blog">
+<meta property="og:description" content="图由结点和边的集合构成。(图不可为空图，树可为空树) 在无向图中，边(vi,vj)等价于有向图的&amp;lt;vi,vj&amp;gt;与&amp;lt;vj,vi&amp;gt;。 在无向图中，与顶点相关边的条数为顶点的度。 在有向图中，指向顶点的度，由顶点发出的边的条数为顶点的出度。 有向完全图：若有向图有n个顶点，则最多有n(n-1)条边[任意两个顶点两条边]。 无向完全图：有n个顶点，任意两个顶点之间都存在边，最多有">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/ab95c2833a86d814719c9cfa30583812?method=download&shareKey=db6bba9480b7a9e3689a7a3377448ce6&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/3c1a1a945a76c336735018e645cb241f?method=download&shareKey=e6d2fcdc0e044eaccbed1bc5256e24ef&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/b4acf31c23919630799621cf36fffd3f?method=download&shareKey=8d59973424972428361072fac2805c85&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/48411a57edabad8de321bb6b1e284a3d?method=download&shareKey=109aa3217ac867d29739bb3006124421&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/d7a725df5eb4247e31436e725da5bd60?method=download&shareKey=0d0ef687b76086eb1132bf9fbb91b2c8&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/07f7a95c9f9eb5d16b45043a4a74a251?method=download&shareKey=bd918b4dff4f9831e956335cf55ca3f8&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/e114c169be8a4cba335d737ba41f89af?method=download&shareKey=6fbff16ff753fe6d1adda74f6792cf80&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/77f1f5ebd69e3085f4a02357778fc10b?method=download&shareKey=ee635ee44bc8ef792b69d09fc27735cc&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/0f86452a5a2fb1c4a06f0fcb2c37351b?method=download&shareKey=afe9044c9c9d76f9bbc247afe36ca50f&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/56471aec0b4691f8151875b8f669fbf5?method=download&shareKey=bf311ebd3b5fe25df97e69c5d502579f&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/2c99a97b92d87c16a279c799aab035f0?method=download&shareKey=47ae18885976e73f9e54f8f8f2b2ee0f&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/96e8f9ff5ab8c93fa05c234b31be9412?method=download&shareKey=3b1bfaa5f87a20311b56bace10c9656d&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/1c701ad30693b8b31c15fd00f9a0d813?method=download&shareKey=f5ecd9c6ee054d4a9875fee6b8138590&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/16f6cbd4ab93789a98f90c4ceee10db2?method=download&shareKey=2b6c1ea4e369fc79de61bf399a387fa5&inline=true">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/7dca7a9a5f56b5ad970bc3cee5d0f0e0?method=download&shareKey=e9ee395d2b8338b61e6338c6eaa65240&inline=true">
+<meta property="og:updated_time" content="2021-01-28T14:32:59.784Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图及其应用">
+<meta name="twitter:description" content="图由结点和边的集合构成。(图不可为空图，树可为空树) 在无向图中，边(vi,vj)等价于有向图的&amp;lt;vi,vj&amp;gt;与&amp;lt;vj,vi&amp;gt;。 在无向图中，与顶点相关边的条数为顶点的度。 在有向图中，指向顶点的度，由顶点发出的边的条数为顶点的出度。 有向完全图：若有向图有n个顶点，则最多有n(n-1)条边[任意两个顶点两条边]。 无向完全图：有n个顶点，任意两个顶点之间都存在边，最多有">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/ab95c2833a86d814719c9cfa30583812?method=download&shareKey=db6bba9480b7a9e3689a7a3377448ce6&inline=true">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="HangZo's blog" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://fanhang64.github.io/2021/01/07/图及其应用/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>图及其应用 | HangZo's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HangZo's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fanhang64.github.io/2021/01/07/图及其应用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HangZo">
+      <meta itemprop="description" content="凡事预则立,不预则废">
+      <meta itemprop="image" content="/images/avatrar-main.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HangZo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">图及其应用
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-01-07 18:09:58" itemprop="dateCreated datePublished" datetime="2021-01-07T18:09:58+08:00">2021-01-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-01-28 22:32:59" itemprop="dateModified" datetime="2021-01-28T22:32:59+08:00">2021-01-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构与算法/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2021/01/07/图及其应用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/01/07/图及其应用/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ol>
+<li>图由<strong>结点和边</strong>的集合构成。(图不可为空图，树可为空树)</li>
+<li>在无向图中，边(vi,vj)等价于有向图的&lt;vi,vj&gt;与&lt;vj,vi&gt;。</li>
+<li>在<strong>无向图</strong>中，与顶点相关边的条数为<strong>顶点的度</strong>。</li>
+<li>在<strong>有向图</strong>中，指向顶点的度，<strong>由顶点发出的边的条数为</strong>顶点的出度。</li>
+<li>有向完全图：若有向图有n个顶点，则最多有<code>n(n-1)</code>条边[任意两个顶点两条边]。</li>
+<li>无向完全图：有n个顶点，任意两个顶点之间都存在边，最多有<code>n(n-1)/2</code>条边。</li>
+<li>连通：从顶点vi到顶点vj<strong>有路径</strong>，则vi与vj连通。</li>
+<li><strong>连通图</strong>：任意两个顶点之间都连通。</li>
+<li><strong>连通分量</strong>：极大连通子图(极大说的是包含所有边)。</li>
+<li>在有向图中，若顶点vi与vj，从vi到vj，和从vj到vi都有路径，则称图为<strong>强连通图</strong>。</li>
+<li>极大强连通子图称为<strong>强连通分量</strong>。</li>
+<li>顶点为n个的无向连通图<strong>至少有n-1</strong>条边。</li>
+<li>顶点为n个的<strong>有向强连通图</strong>则<strong>至少有n</strong>条边(此时构成环)。</li>
+<li>生成树(极小连通子图)：保持连通，边最少，<strong>不唯一</strong>。</li>
+<li>简单路径：顶点不重复出现的路径。</li>
+<li>无向图的图的度：<strong>边数为无向图所有顶点度的一半</strong>。<a id="more"></a>
+</li>
+</ol>
+<h3 id="图的存储结构"><a href="#图的存储结构" class="headerlink" title="图的存储结构"></a>图的存储结构</h3><p>邻接多重表只适用于<strong>无向图</strong>，十字链表适用于<strong>有向图</strong>，其余既可以<strong>无向图和有向图</strong>。</p>
+<ol>
+<li><p>邻接矩阵法</p>
+<ul>
+<li>图的<strong>顺序存储结构</strong>。适用于<strong>稠密图</strong>，邻接矩阵法空间复杂度为<strong>O(n^2)</strong>，与边的数目无关。</li>
+<li>无向图中，矩阵是<strong>对称</strong>的，其中第i行<strong>或</strong>第i列的和为顶点i的<strong>度</strong>，并且唯一。</li>
+<li>有向图中，邻接矩阵<strong>可能为对称</strong>。<strong>第i行</strong>元素和为顶点i的<strong>出度</strong>，<strong>第i列</strong>元素之和为顶点i的<strong>入度</strong>。</li>
+<li><p>结构体定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const int Maxsize = 100 // 最大顶点数</span><br><span class="line">typedef struct Graph&#123;</span><br><span class="line">    VertexType vexs[Maxsize];  // 顶点向量 可以定义为char类型</span><br><span class="line">    ArcType arcs[Maxsize][Maxsize];  // 邻接矩阵 int 类型</span><br><span class="line">    </span><br><span class="line">    int vexnum,arcnum; // 顶点和边的个数</span><br><span class="line">&#125;Graph;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对于图(有向，无向)：有边为1，否则为0。</p>
+</li>
+<li>对于网(有向有权图)：有边为权值，否则为∞</li>
+<li><p>画图</p>
+<ul>
+<li><p>对于无向图</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/ab95c2833a86d814719c9cfa30583812?method=download&amp;shareKey=db6bba9480b7a9e3689a7a3377448ce6&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+<li><p>对于有向图</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/3c1a1a945a76c336735018e645cb241f?method=download&amp;shareKey=e6d2fcdc0e044eaccbed1bc5256e24ef&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+<li><p>对于网(有向有权图)</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/b4acf31c23919630799621cf36fffd3f?method=download&amp;shareKey=8d59973424972428361072fac2805c85&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>邻接表法</p>
+<ul>
+<li>为每个顶点建立一个单链表，第i个结点的表头指针指向关于vi顶点的边表。邻接表法更适用于<strong>稀疏图</strong>。 ，且邻接表画图结果不唯一。</li>
+<li>邻接表由<code>顶点表(顺序存储)</code>和<code>边表(链式存储)</code>组成。</li>
+<li>邻接表占用存储空间与<strong>结点和边都有关</strong>。</li>
+<li><p>结点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">顶点表(链域，数据域)</span><br><span class="line">firstarc data</span><br><span class="line"></span><br><span class="line">边表(邻接点域，链域，数据域)</span><br><span class="line">adjvex  nextarc info</span><br><span class="line"></span><br><span class="line">typedef struct node&#123;  // 边表结点</span><br><span class="line">    int adjvex;  // 该弧所指向的顶点的位置</span><br><span class="line">    struct node *next;</span><br><span class="line">&#125;EdgeNode;</span><br><span class="line"></span><br><span class="line">typedef struct vnode&#123;</span><br><span class="line">    char data;  // 顶点数据</span><br><span class="line">    EdgeNode *first;  // 指向第一条该顶点的弧</span><br><span class="line">&#125;VNode;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在无向图中，顶点vi的度为第i结点指向的<strong>边表中结点数</strong>。</p>
+</li>
+<li>在有向图中，边表中结点数只是顶点i的<strong>出度</strong>。要求入度需要遍历整个邻接表。</li>
+<li><p>画法</p>
+<ul>
+<li><p>无向图</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/48411a57edabad8de321bb6b1e284a3d?method=download&amp;shareKey=109aa3217ac867d29739bb3006124421&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+<li><p>有向图</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/d7a725df5eb4247e31436e725da5bd60?method=download&amp;shareKey=0d0ef687b76086eb1132bf9fbb91b2c8&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+<li><p>逆邻接表(为了方便确定顶点的入度)</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/07f7a95c9f9eb5d16b45043a4a74a251?method=download&amp;shareKey=bd918b4dff4f9831e956335cf55ca3f8&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>十字链表</p>
+<ul>
+<li>十字链表相当于邻接表和逆邻接表结合。</li>
+<li>结点结构<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">顶点结点(结点，指向入边第一个结点，指向出边第一个结点)</span><br><span class="line">data  firstin  firstout</span><br><span class="line"></span><br><span class="line">弧结点(头，尾，指向下一个入边，下一个出边)</span><br><span class="line">start  end  nextin nextout</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>画图<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/e114c169be8a4cba335d737ba41f89af?method=download&amp;shareKey=6fbff16ff753fe6d1adda74f6792cf80&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+</ul>
+<ol start="4">
+<li>邻接多重表<ul>
+<li>适用于无向图，不能存储有向图。</li>
+</ul>
+</li>
+</ol>
+<p>例如：<br>最适合稀疏无向图：邻接多重表。<br>最适合稀疏有向图：十字链表。</p>
+<h3 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h3><p>无论是深度优先，还是广度优先，时间复杂度<strong>采用邻接表</strong>时都为<strong>O(n+e)</strong>，空间复杂度为<strong>O(n)</strong>，采用<strong>邻接矩阵</strong>时时间复杂度为<strong>O(n^2)</strong>。</p>
+<ol>
+<li><p>深度优先遍历</p>
+<ul>
+<li>类似树的<strong>先根遍历</strong></li>
+<li>同一个图的深度优先遍历<strong>序列可能不同</strong>。</li>
+<li>基本思想：首先访问出发点v，标记为已访问过，然后选取与v相邻的未访问的w，访问，然后选取与w相邻的未访问的顶点，重复。当所有相邻的顶点都访问过，依次退回到最近访问，然后找未访问顶点，重复上述访问操作，直到图中所有顶点访问结束。</li>
+<li><p>可以利用深度优先遍历<strong>判断是否存在回路</strong>。</p>
+</li>
+<li><p>画图</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/77f1f5ebd69e3085f4a02357778fc10b?method=download&amp;shareKey=ee635ee44bc8ef792b69d09fc27735cc&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+<li><p>代码实现</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> visited[max_vertex_num];  <span class="comment">// 标记访问数组</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFSTraverse</span><span class="params">(Graph G)</span></span>&#123;</span><br><span class="line">   <span class="comment">// 初始化为false</span></span><br><span class="line">   <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;G.vexnum;i++)&#123;</span><br><span class="line">       visited[i] = <span class="literal">false</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">//从0号开始遍历，遍历每个连通分量</span></span><br><span class="line">   <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;G.vexnum;i++)&#123;</span><br><span class="line">       <span class="keyword">if</span>(!visited[i])&#123;</span><br><span class="line">           DFS(G, i);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(Graph G, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    visit(v);  <span class="comment">// 访问结点v</span></span><br><span class="line">    visited[v] = <span class="literal">true</span>;  <span class="comment">// 将标记数组，标记为已访问</span></span><br><span class="line">    <span class="keyword">for</span>(w=FirstNeighbor(G, v); w&gt;=<span class="number">0</span>; w=NextNeighbor(G, v, w))&#123;  <span class="comment">// w为u的尚未访问的邻接结点</span></span><br><span class="line">        <span class="keyword">if</span>(!visited[w])&#123;</span><br><span class="line">            DFS(G, w);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>广度优先遍历</p>
+<ul>
+<li>类似<strong>层次遍历</strong>二叉树</li>
+<li>广度优先遍历需要借助一队列。</li>
+<li>广度优先生成树，若给定<strong>邻接矩阵存储</strong>则表示唯一，若给定<strong>邻接表</strong>则表示不唯一。</li>
+<li>画图<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/0f86452a5a2fb1c4a06f0fcb2c37351b?method=download&amp;shareKey=afe9044c9c9d76f9bbc247afe36ca50f&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+<li>代码<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> visited[max_vex_num];  <span class="comment">// 最大顶点个数，用于标记结点是否已被访问</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BFSTraverse</span><span class="params">(Graph G)</span></span>&#123; <span class="comment">// 初始化</span></span><br><span class="line">   <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;G.vexnum;i++)&#123;</span><br><span class="line">      visited[i] = <span class="literal">false</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   InitQueue(Q);</span><br><span class="line">   <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;G.vexnum;i++)&#123;  <span class="comment">// 从0号顶点开始遍历，且循环目的是对每个连通分量调用一次BFS</span></span><br><span class="line">      <span class="keyword">if</span>(!visited[i])</span><br><span class="line">        BFS(G, i);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BFS</span><span class="params">(Graph G, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">  visit(v);  <span class="comment">// 访问v顶点</span></span><br><span class="line">  visited[v] = <span class="literal">true</span>;</span><br><span class="line">  Enqueue(Q, v); <span class="comment">// 顶点v入队列</span></span><br><span class="line">  <span class="keyword">while</span>(!isEmpty(Q))&#123;</span><br><span class="line">      DeQueue(Q, v);  <span class="comment">// v出队</span></span><br><span class="line">      <span class="keyword">for</span>(w=FirstNeighbor(G, v); w&gt;=<span class="number">0</span>; w=nextNeighbor(G, v,w))&#123;</span><br><span class="line">       <span class="comment">// 获取所有与v邻接的顶点</span></span><br><span class="line">          <span class="keyword">if</span>(!visited[w])&#123;  <span class="comment">// 逐个判断并访问</span></span><br><span class="line">              visit(w);</span><br><span class="line">              visited[w] = <span class="literal">true</span>;</span><br><span class="line">              Enqueue(Q, w);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="最小生成树-MST-带权值-都是针对无向图"><a href="#最小生成树-MST-带权值-都是针对无向图" class="headerlink" title="最小生成树(MST)(带权值)[都是针对无向图]"></a>最小生成树(MST)(带权值)[都是针对无向图]</h3><p>(1) 最小生成树的边数为<strong>顶点数-1</strong>。<br>(2) 最小生成树代价唯一，最小生成树的树形不唯一。</p>
+<ol>
+<li><p>普里姆算法[要求代码]</p>
+<ul>
+<li>从顶点出发每次<strong>选权值最小的边</strong>。</li>
+<li>判断：无向图一定有唯一形态的最小代价生成树。(错)  // 当所有<strong>权值不相同</strong>时，生成的最小生成树才唯一。</li>
+<li>使用<strong>邻接矩阵</strong>存储时，时间复杂度为：O(n^2)</li>
+<li>使用<strong>邻接表</strong>存储时，时间复杂度为：<strong>O(n+e)</strong></li>
+<li>适用于<strong>稠密图</strong>。特点：只与顶点个数n有关，与边的数目e无关。</li>
+<li><p>画图</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/56471aec0b4691f8151875b8f669fbf5?method=download&amp;shareKey=bf311ebd3b5fe25df97e69c5d502579f&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+<li><p>代码</p>
+</li>
+</ul>
+</li>
+<li><p>克鲁斯卡尔算法</p>
+<ul>
+<li>无需从顶点出发，只需要找权值边最小。</li>
+<li>适用于<strong>稀疏图</strong>。特点：只与边的数目e有关，与定点个数n无关。</li>
+<li><p>画图</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/2c99a97b92d87c16a279c799aab035f0?method=download&amp;shareKey=47ae18885976e73f9e54f8f8f2b2ee0f&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+<li><p>时间复杂度为：<strong>O(eloge)</strong>  // e为边数</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="拓扑排序-每次删除入度为0的顶点并输出-不要求代码"><a href="#拓扑排序-每次删除入度为0的顶点并输出-不要求代码" class="headerlink" title="拓扑排序(每次删除入度为0的顶点并输出) [不要求代码]"></a>拓扑排序(每次删除入度为0的顶点并输出) [不要求代码]</h3><ol>
+<li>有向无环图(DAG)。AOV网</li>
+<li>拓扑排序结果不一定唯一。</li>
+<li><p>算法思想：</p>
+<ol>
+<li>从DAG中选择一个 <strong>没有前驱结点的结点A(入度为0)</strong> 并输出</li>
+<li>从图中删除所有以A为起点的边</li>
+<li>重复1.2操作直到图为空，或者不存在无前驱顶点为止(存在环)。</li>
+</ol>
+</li>
+<li><p>画图</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/96e8f9ff5ab8c93fa05c234b31be9412?method=download&amp;shareKey=3b1bfaa5f87a20311b56bace10c9656d&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+</ol>
+<h3 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h3><ol>
+<li><p>迪杰斯特拉算法[要求代码]</p>
+<ul>
+<li>用于求<strong>某一顶点到其余各顶点的最短路径</strong>。</li>
+<li>迪杰斯特拉适合求解<strong>带回路的有权图的最短路径</strong>，也可以求<strong>任意两个顶点的最短路径</strong>，不适合<strong>求带负权值的最短路径</strong>问题。</li>
+<li><p>画图</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/1c701ad30693b8b31c15fd00f9a0d813?method=download&amp;shareKey=f5ecd9c6ee054d4a9875fee6b8138590&amp;inline=true" alt="image"><br>注意：图中的vj为从v0出发到vj的最短路径。再次比较时，用这个到其他顶点距离与原来距离比较。</p>
+</blockquote>
+</li>
+<li><p>代码</p>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li>弗洛伊德算法<ul>
+<li>用于求<strong>每对顶点直间的最短路径</strong></li>
+<li>时间复杂度为O(n^3)</li>
+<li>画图<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/16f6cbd4ab93789a98f90c4ceee10db2?method=download&amp;shareKey=2b6c1ea4e369fc79de61bf399a387fa5&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="关键路径-找最长的路径"><a href="#关键路径-找最长的路径" class="headerlink" title="关键路径(找最长的路径)"></a>关键路径(找最长的路径)</h3><ol>
+<li>AOE网，有向无环图。</li>
+<li>边为<strong>活动或任务</strong>。</li>
+<li>顶点为<strong>事件</strong>。</li>
+<li>关键活动：关键路径上活动(边)为关键活动。</li>
+<li>关键路径：从原点到汇点<strong>最大路径长度</strong>的路径称为关键路径。</li>
+<li>事件(顶点)i：最早发生时间<strong>v<sub>e</sub>(vi)</strong>，最晚发生时间<strong>v<sub>l</sub>(vi)</strong>。</li>
+<li>活动(边)：最早开始时间e(ai)，最晚开始时间l(ai)。</li>
+<li><p>画图</p>
+<blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/7dca7a9a5f56b5ad970bc3cee5d0f0e0?method=download&amp;shareKey=e9ee395d2b8338b61e6338c6eaa65240&amp;inline=true" alt="image"></p>
+</blockquote>
+</li>
+<li><p>事件最迟发生时间<strong>v<sub>l</sub>(vi)=v<sub>e</sub>(vi)</strong>，或者取min。</p>
+</li>
+<li>网中的关键路径不唯一，只有加快包含所有关键路径上的关键活动才能缩短工期，但也不能随意缩短，关键活动有可能变为非关键活动。</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束感谢您的阅读-------------</div>
+    
+</div>
+    
+  </div>
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>HangZo</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://fanhang64.github.io/2021/01/07/图及其应用/" title="图及其应用">https://fanhang64.github.io/2021/01/07/图及其应用/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图/" rel="tag"> <i class="fa fa-tag"></i> 图</a>
+          
+            <a href="/tags/图的遍历/" rel="tag"> <i class="fa fa-tag"></i> 图的遍历</a>
+          
+            <a href="/tags/图的应用/" rel="tag"> <i class="fa fa-tag"></i> 图的应用</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/07/树和二叉树总结/" rel="next" title="树和二叉树总结">
+                <i class="fa fa-chevron-left"></i> 树和二叉树总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/07/查找总结/" rel="prev" title="查找总结">
+                查找总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatrar-main.jpg" alt="HangZo">
+            
+              <p class="site-author-name" itemprop="name">HangZo</p>
+              <div class="site-description motion-element" itemprop="description">凡事预则立,不预则废</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/fanhang64" title="GitHub &rarr; https://github.com/fanhang64" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:fanhang64@gmail.com" title="E-Mail &rarr; mailto:fanhang64@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+          
+            
+          
+          
+
+        </div>
+
+
+      <div id="music163player">
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=586299&auto=0&height=66"></iframe>
+      </div>
+      <div id="blogRoll">
+          
+      </div>
+  <style>
+    #days {
+      display: block;
+      color: rgb(7, 179, 155);
+      font-size: 13px;
+      margin-top: 15px;
+    }
+  </style>
+<div id="days"></div>
+<script language="javascript">
+    function show_date_time(){
+      window.setTimeout("show_date_time()", 1000);
+      BirthDay=new Date("05/01/2019 00:00:00"); //日期自定义
+      today=new Date();
+      timeold=(today.getTime()-BirthDay.getTime());
+      sectimeold=timeold/1000
+      secondsold=Math.floor(sectimeold);
+      msPerDay=24*60*60*1000
+      e_daysold=timeold/msPerDay
+      daysold=Math.floor(e_daysold);
+      e_hrsold=(e_daysold-daysold)*24;
+      hrsold=setzero(Math.floor(e_hrsold));
+      e_minsold=(e_hrsold-hrsold)*60;
+      minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+      seconds=setzero(Math.floor((e_minsold-minsold)*60));
+      document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+    }
+    function setzero(i){
+      if (i<10)
+      {
+        i="0" + i
+      };
+      return i;
+    }
+    show_date_time();
+</script>
+
+    
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#图的存储结构"><span class="nav-number">1.</span> <span class="nav-text">图的存储结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图的遍历"><span class="nav-number">2.</span> <span class="nav-text">图的遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小生成树-MST-带权值-都是针对无向图"><span class="nav-number">3.</span> <span class="nav-text">最小生成树(MST)(带权值)[都是针对无向图]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓扑排序-每次删除入度为0的顶点并输出-不要求代码"><span class="nav-number">4.</span> <span class="nav-text">拓扑排序(每次删除入度为0的顶点并输出) [不要求代码]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最短路径"><span class="nav-number">5.</span> <span class="nav-text">最短路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关键路径-找最长的路径"><span class="nav-number">6.</span> <span class="nav-text">关键路径(找最长的路径)</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </div></aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner" style="text-align: center;">
+        <div class="copyright">
+&copy; 2019 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HangZo</span>
+  
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">&nbsp;&nbsp;总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+  
+  
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  Count by <a href="https://busuanzi.ibruce.info/" class="theme-link" rel="noopener" target="_blank">busuanzi</a>
+
+
+<!-- 血小板 -->
+  <div id="landlord">
+      <div class="message" style="opacity:0"></div>
+      <canvas id="live2d" width="560" height="500" class="live2d"></canvas>
+      <div class="hide-button">隐藏</div>
+  </div>
+
+  <!-- live2d 血小板 -->
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+    var message_Path = '/live2d/'
+    var home_Path = 'https://haremu.com/'
+</script>
+<script type="text/javascript" src="/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="/live2d/js/message.js"></script>
+<script type="text/javascript">
+    loadlive2d("live2d", "/live2d/model/xiaoban/model.json");
+</script>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'zUSi1NeG8Q34NN97kqI0P2vf-gzGzoHsz',
+    appKey: 'zOmcvbJEeRDi0vXQJFWRtxG3',
+    placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
